@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aditya Rai | Portfolio</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #050507;
+    --card: rgba(255,255,255,0.045);
+    --border: rgba(255,255,255,0.10);
+    --text: #ffffff;
+    --muted: #92929d;
+    --purple: #8b5cf6;
+    --cyan: #22d3ee;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+.cursor {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform .08s linear;
+    mix-blend-mode: difference;
+}
+
+.cursor-ring {
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: .15s ease;
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+/* =========================
+   GLOW
+========================= */
+
+.glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: .12;
+    z-index: -3;
+}
+
+.glow.one {
+    background: var(--purple);
+    top: -250px;
+    left: -200px;
+}
+
+.glow.two {
+    background: var(--cyan);
+    bottom: -250px;
+    right: -200px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+
+    background: rgba(5,5,7,.65);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.logo {
+    font-family: "Space Grotesk";
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--purple);
+}
+
+nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    padding: 160px 8% 80px;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.available {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 8px 15px;
+
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 30px;
+
+    color: #bbb;
+    font-size: 13px;
+
+    margin-bottom: 25px;
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #22c55e;
+}
+
+.hero h1 {
+    font-family: "Space Grotesk";
+    font-size: clamp(60px, 10vw, 125px);
+    line-height: .9;
+    letter-spacing: -5px;
+}
+
+.gradient {
+    background: linear-gradient(
+        90deg,
+        #fff,
+        var(--purple),
+        var(--cyan)
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.typing {
+    color: var(--muted);
+    font-size: clamp(18px, 2vw, 24px);
+    margin-top: 30px;
+}
+
+.cursor-type {
+    color: var(--purple);
+}
+
+.hero-description {
+    max-width: 650px;
+    color: #777;
+    line-height: 1.8;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.primary {
+    color: #000;
+    background: white;
+}
+
+.primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(255,255,255,.15);
+}
+
+.secondary {
+    color: white;
+    border: 1px solid var(--border);
+    background: var(--card);
+}
+
+.secondary:hover {
+    border-color: var(--purple);
+    transform: translateY(-4px);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 120px 8%;
+}
+
+.section-label {
+    color: var(--purple);
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-family: "Space Grotesk";
+    font-size: clamp(40px, 6vw, 70px);
+    letter-spacing: -2px;
+    margin-bottom: 50px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 50px;
+}
+
+.about-text {
+    color: #8c8c96;
+    line-height: 2;
+    font-size: 18px;
+}
+
+.about-text strong {
+    color: white;
+}
+
+.info-card {
+    padding: 30px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    color: #666;
+}
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.skill {
+    padding: 35px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: var(--card);
+    transition: .4s;
+}
+
+.skill:hover {
+    transform: translateY(-8px);
+    border-color: var(--purple);
+    box-shadow: 0 20px 50px rgba(139,92,246,.08);
+}
+
+.skill-icon {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.skill h3 {
+    margin-bottom: 10px;
+}
+
+.skill p {
+    color: #777;
+    line-height: 1.7;
+}
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+}
+
+.project {
+    position: relative;
+    overflow: hidden;
+
+    padding: 35px;
+
+    min-height: 300px;
+
+    border: 1px solid var(--border);
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.08),
+            transparent
+        ),
+        var(--card);
+
+    transition: .4s;
+}
+
+.project:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139,92,246,.5);
+}
+
+.project-number {
+    color: var(--purple);
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.project h3 {
+    font-family: "Space Grotesk";
+    font-size: 30px;
+    margin: 25px 0 15px;
+}
+
+.project p {
+    color: #777;
+    line-height: 1.8;
+}
+
+.tags {
+    margin-top: 25px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 7px 13px;
+    margin: 3px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.05);
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-section {
+    text-align: center;
+}
+
+.music-card {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 60px 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(139,92,246,.12),
+            transparent 60%
+        ),
+        var(--card);
+}
+
+.music-icon {
+    font-size: 80px;
+    margin-bottom: 25px;
+}
+
+.music-card p {
+    color: #777;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* =========================
+   SOCIALS
+========================= */
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.social {
+    padding: 13px 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 30px;
+
+    color: #bbb;
+    text-decoration: none;
+
+    background: var(--card);
+
+    transition: .3s;
+}
+
+.social:hover {
+    color: white;
+    border-color: var(--purple);
+    transform: translateY(-4px);
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    text-align: center;
+}
+
+.contact-text {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.email {
+    display: inline-block;
+
+    font-family: "Space Grotesk";
+    font-size: clamp(25px, 5vw, 55px);
+
+    color: white;
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.email:hover {
+    color: var(--purple);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 35px 8%;
+    text-align: center;
+    color: #444;
+    border-top: 1px solid rgba(255,255,255,.05);
+}
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 1s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+    nav {
+        padding: 18px 5%;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    section {
+        padding: 90px 5%;
+    }
+
+    .hero {
+        padding: 140px 5% 70px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    .cursor,
+    .cursor-ring {
+        display: none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- GLOW -->
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<!-- PARTICLES -->
+
+<canvas id="particles"></canvas>
+
+<!-- CURSOR -->
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        AR<span>.</span>
+    </div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content reveal">
+
+        <div class="available">
+            <span class="status"></span>
+            Currently learning & building
+        </div>
+
+        <h1>
+            Aditya<br>
+            <span class="gradient">Rai.</span>
+        </h1>
+
+        <div class="typing">
+            I'm a <span class="cursor-type" id="typing"></span>
+        </div>
+
+        <p class="hero-description">
+            Student, developer and creative enthusiast exploring
+            technology, cybersecurity, electronics, music and
+            everything interesting along the way.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#projects" class="btn primary">
+                Explore My Work →
+            </a>
+
+            <a href="#contact" class="btn secondary">
+                Let's Talk
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-label reveal">
+        01 — ABOUT
+    </div>
+
+    <h2 class="section-title reveal">
+        A little about me.
+    </h2>
+
+    <div class="about-grid">
+
+        <div class="about-text reveal">
+
+            <p>
+                Hey, I'm <strong>Aditya Rai</strong>.
+            </p>
+
+            <br>
+
+            <p>
+                I'm a student who loves experimenting with technology
+                and turning random ideas into real projects.
+                I'm particularly interested in programming,
+                cybersecurity, electronics and computers.
+            </p>
+
+            <br>
+
+            <p>
+                When I'm away from a screen, you'll probably find me
+                playing guitar, making music, playing football or
+                working on some completely random idea.
+            </p>
+
+        </div>
+
+
+        <div class="info-card reveal">
+
+            <div class="info-row">
+                <span>Name</span>
+                <strong>Aditya Rai</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Location</span>
+                <strong>Nepal</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Focus</span>
+                <strong>Technology</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Interests</span>
+                <strong>Code + Music</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+    <div class="section-label reveal">
+        02 — SKILLS
+    </div>
+
+    <h2 class="section-title reveal">
+        Things I enjoy.
+    </h2>
+
+    <div class="skills">
+
+        <div class="skill reveal">
+
+            <div class="skill-icon">💻</div>
+
+            <h3>Programming</h3>
+
+            <p>
+                Building websites and learning different
+                programming concepts.
+            </p>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-icon">🔐</div>
+
+            <h3>Cybersecurity</h3>
+
+            <p>
+                Exploring Linux, networks, security concepts
+                and ethical hacking.
+            </p>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-icon">⚡</div>
+
+            <h3>Electronics</h3>
+
+            <p>
+                Arduino, sensors, circuits and experimental
+                hardware projects.
+            </p>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-icon">🎸</div>
+
+            <h3>Music</h3>
+
+            <p>
+                Guitar, vocals, recording and experimenting
+                with different sounds.
+            </p>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-icon">⚽</div>
+
+            <h3>Football</h3>
+
+            <p>
+                Teamwork, leadership, training and competition.
+            </p>
+
+        </div>
+
+
+        <div class="skill reveal">
+
+            <div class="skill-icon">🎨</div>
+
+            <h3>Creative Work</h3>
+
+            <p>
+                Presentations, design, ideas and creative
+                digital projects.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="section-label reveal">
+        03 — PROJECTS
+    </div>
+
+    <h2 class="section-title reveal">
+        Things I've built.
+    </h2>
+
+
+    <div class="projects">
+
+
+        <div class="project reveal">
+
+            <div class="project-number">
+                PROJECT 01
+            </div>
+
+            <h3>Earthquake Alert</h3>
+
+            <p>
+                Arduino-based vibration detection system designed
+                to detect significant movement and trigger an alert.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Arduino</span>
+                <span class="tag">Sensors</span>
+                <span class="tag">C++</span>
+            </div>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <div class="project-number">
+                PROJECT 02
+            </div>
+
+            <h3>Science Projects</h3>
+
+            <p>
+                Experimental electronics and science projects
+                developed for school exhibitions.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Electronics</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">Innovation</span>
+            </div>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <div class="project-number">
+                PROJECT 03
+            </div>
+
+            <h3>Personal Website</h3>
+
+            <p>
+                A futuristic responsive portfolio designed to
+                showcase my skills, projects and interests.
+            </p>
+
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+            </div>
+
+        </div>
+
+
+        <div class="project reveal">
+
+            <div class="project-number">
+                PROJECT 04
+            </div>
+
+            <h3>Music Experiments</h3>
+
+            <p>
+                Guitar and vocal recording experiments combining
+                instruments, effects and digital audio.
+            </p>
+
+            <div class="tags">
+                <span class="tag">Guitar</span>
+                <span class="tag">Vocals</span>
+                <span class="tag">Audio</span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- MUSIC -->
+
+<section class="music-section">
+
+    <div class="section-label reveal">
+        04 — BEYOND CODE
+    </div>
+
+    <h2 class="section-title reveal">
+        Code isn't everything.
+    </h2>
+
+    <div class="music-card reveal">
+
+        <div class="music-icon">
+            🎸
+        </div>
+
+        <h2>Music is another language.</h2>
+
+        <br>
+
+        <p>
+            I play guitar, experiment with vocals and enjoy
+            discovering new sounds. Technology and music are
+            two completely different worlds — but I love both.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SOCIALS -->
+
+<section>
+
+    <div class="section-label reveal" style="text-align:center;">
+        FIND ME ONLINE
+    </div>
+
+    <div class="socials reveal">
+
+        <a
+            class="social"
+            href="https://github.com/Aditya-Rai404"
+            target="_blank"
+        >
+            GitHub
+        </a>
+
+        <a
+            class="social"
+            href="https://instagram.com/4drisya_"
+            target="_blank"
+        >
+            Instagram
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <div class="section-label reveal">
+        05 — CONTACT
+    </div>
+
+    <h2 class="section-title reveal">
+        Let's build something.
+    </h2>
+
+    <p class="contact-text reveal">
+        Have an idea, project or just want to say hello?
+    </p>
+
+    <a
+        class="email reveal"
+        href="mailto:hatsoff.aadityasunuwar@gmail.com"
+    >
+        hatsoff.aadityasunuwar@gmail.com
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+    © 2026 Aditya Rai · Built from scratch.
+</footer>
+
+
+<script>
+
+/* =========================
+   TYPING ANIMATION
+========================= */
+
+const words = [
+    "developer.",
+    "student.",
+    "musician.",
+    "creator.",
+    "footballer."
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typing = document.getElementById("typing");
+
+function typeEffect() {
+
+    const word = words[wordIndex];
+
+    if (!deleting) {
+
+        typing.textContent =
+            word.substring(0, charIndex + 1);
+
+        charIndex++;
+
+        if (charIndex === word.length) {
+
+            deleting = true;
+
+            setTimeout(typeEffect, 1500);
+
+            return;
+        }
+
+    } else {
+
+        typing.textContent =
+            word.substring(0, charIndex - 1);
+
+        charIndex--;
+
+        if (charIndex === 0) {
+
+            deleting = false;
+
+            wordIndex++;
+
+            if (wordIndex === words.length) {
+                wordIndex = 0;
+            }
+
+        }
+
+    }
+
+    setTimeout(
+        typeEffect,
+        deleting ? 50 : 100
+    );
+}
+
+typeEffect();
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const reveals =
+    document.querySelectorAll(".reveal");
+
+function revealElements() {
+
+    reveals.forEach(element => {
+
+        const top =
+            element.getBoundingClientRect().top;
+
+        if (top < window.innerHeight - 80) {
+            element.classList.add("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealElements);
+
+revealElements();
+
+
+/* =========================
+   CUSTOM CURSOR
+========================= */
+
+const cursor =
+    document.querySelector(".cursor");
+
+const ring =
+    document.querySelector(".cursor-ring");
+
+document.addEventListener("mousemove", e => {
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+    ring.style.left = e.clientX + "px";
+    ring.style.top = e.clientY + "px";
+
+});
+
+
+/* =========================
+   PARTICLE BACKGROUND
+========================= */
+
+const canvas =
+    document.getElementById("particles");
+
+const ctx =
+    canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+class Particle {
+
+    constructor() {
+
+        this.x =
+            Math.random() * canvas.width;
+
+        this.y =
+            Math.random() * canvas.height;
+
+        this.size =
+            Math.random() * 1.5 + .5;
+
+        this.speedX =
+            (Math.random() - .5) * .4;
+
+        this.speedY =
+            (Math.random() - .5) * .4;
+
+    }
+
+    update() {
+
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width)
+            this.speedX *= -1;
+
+        if (this.y < 0 || this.y > canvas.height)
+            this.speedY *= -1;
+
+    }
+
+    draw() {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            "rgba(255,255,255,.35)";
+
+        ctx.fill();
+
+    }
+
+}
+
+
+function createParticles() {
+
+    particles = [];
+
+    const amount =
+        Math.min(
+            Math.floor(
+                (canvas.width * canvas.height) / 12000
+            ),
+            120
+        );
+
+    for (let i = 0; i < amount; i++) {
+
+        particles.push(
+            new Particle()
+        );
+
+    }
+
+}
+
+
+function animateParticles() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    particles.forEach(p => {
+
+        p.update();
+        p.draw();
+
+    });
+
+    requestAnimationFrame(
+        animateParticles
+    );
+
+}
+
+
+createParticles();
+animateParticles();
+
+
+window.addEventListener("resize", () => {
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+    createParticles();
+
+});
+
+
+/* =========================
+   HOVER CURSOR EFFECT
+========================= */
+
+document.querySelectorAll("a, button").forEach(el => {
+
+    el.addEventListener("mouseenter", () => {
+
+        ring.style.transform =
+            "translate(-50%, -50%) scale(1.7)";
+
+    });
+
+    el.addEventListener("mouseleave", () => {
+
+        ring.style.transform =
+            "translate(-50%, -50%) scale(1)";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
+```
